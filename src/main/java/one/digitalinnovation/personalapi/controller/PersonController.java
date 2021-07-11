@@ -8,7 +8,6 @@ import one.digitalinnovation.personalapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -39,5 +38,16 @@ public class PersonController {
     @GetMapping("/{id}")
     public PersonDTO listByID(@PathVariable Long id) throws PersonNotFoundException {
         return personService.listById(id);
+    }
+
+    @PutMapping("/{id}")
+    public MessageResponseDTO updateById(@PathVariable Long id,@RequestBody @Valid PersonDTO personDTO) throws PersonNotFoundException {
+        return personService.updateById(id, personDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) throws PersonNotFoundException {
+        personService.deleteById(id);
     }
 }
