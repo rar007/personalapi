@@ -1,5 +1,6 @@
 package one.digitalinnovation.personalapi.controller;
 
+import lombok.AllArgsConstructor;
 import one.digitalinnovation.personalapi.dto.request.PersonDTO;
 import one.digitalinnovation.personalapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personalapi.entity.Person;
@@ -14,14 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonController {
 
     private PersonService personService;
-
-    @Autowired
-    public PersonController(PersonService personService) {
-        this.personService = personService;
-    }
 
     //Created method for Person save
     @PostMapping

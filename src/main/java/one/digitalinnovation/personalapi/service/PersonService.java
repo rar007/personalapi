@@ -1,5 +1,6 @@
 package one.digitalinnovation.personalapi.service;
 
+import lombok.AllArgsConstructor;
 import one.digitalinnovation.personalapi.dto.request.PersonDTO;
 import one.digitalinnovation.personalapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personalapi.entity.Person;
@@ -14,15 +15,12 @@ import java.util.stream.Collectors;
 
 // basicamente onde fala para o spring que ele vai gerenciar uma classe do tipo de serviço
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
 
     private PersonRepository personRepository;
-    private static final PersonMapper personMapper = PersonMapper.INSTANCE; //Compliant
+    private static final PersonMapper personMapper = PersonMapper.INSTANCE;
 
-    @Autowired
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
 
     public MessageResponseDTO createPerson(PersonDTO personDTO) {
         var personToSave = personMapper.toModel(personDTO);
